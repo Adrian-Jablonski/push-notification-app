@@ -39,7 +39,16 @@ router.post('/subscribe', (req, res) => {
     console.log(subscription)
     res.status(201).json({})
 
-    const payload = JSON.stringify({title: title, body: 'Testing notification1'})
+    const payload = JSON.stringify({
+        title: title, 
+        options: {
+            body: 'Testing notification1',
+            actions: [
+                {action: 'view', title:'See it', icon: './assets/icons/eye-icon.png'}
+            ],
+            vibrate: [300, 200, 200, 100, 200, 300, 200, 400, 200, 100, 400, 200] 
+        }   
+    })
 
     db.task(t=> { 
         return t.any(`SELECT * FROM push_notification_subscriptions WHERE subscription = '${subscription}'`).then(function(userSubscription) {
@@ -54,7 +63,11 @@ router.post('/subscribe', (req, res) => {
                         webpush.sendNotification(JSON.parse(sub), payload).catch(err => console.error(err))
                     }
                 }
+            }).catch(function(err){
+                console.log(err)
             })
+        }).catch(function(err){
+            console.log(err)
         })
     })
 })

@@ -29,8 +29,18 @@ self.addEventListener('install', event => {
 self.addEventListener('push', e => {
   const data = e.data.json();
   console.log('Push received....', e)
-  self.registration.showNotification(data.title, {
-    body: data.body
-  })
+  self.registration.showNotification(data.title, data.options
+
+  )
+})
+
+self.addEventListener('notificationclick', event => {
+  event.notification.close()
+  var payload = event.notification.data
+
+  switch (event.action) {
+    case 'view':
+      event.waitUntil(client.openWindow(`${event.target.location.origin}`))
+  }
 })
 
