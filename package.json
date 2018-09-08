@@ -20,6 +20,7 @@
     "express-sslify": "^1.2.0",
     "os": "^0.1.1",
     "path": "^0.12.7",
+    "pg-monitor": "^1.0.0",
     "pg-promise": "^8.4.6",
     "web-push": "^3.3.2"
   },

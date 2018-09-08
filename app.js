@@ -7,13 +7,6 @@ var promise = require('bluebird');
 const compression = require('compression')
 app.use(compression())
 var bodyParser = require('body-parser');
-// const passport = require('passport')
-// const LocalStrategy = require('passport-local').Strategy
-// var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
-// var session = require('express-session');
-// const bcrypt = require('bcryptjs');
-// This is posibly the issue for SSL connection. Socket.io fails to
 var server = require('http').Server(app);
 // var io = require('socket.io').listen(server);
 var options = {
